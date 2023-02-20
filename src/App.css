@@ -1,38 +1,215 @@
-.App {
-  text-align: center;
+:root {
+  --primary: #312951;
+  --secondary: #473d72;
+  --light: #fafafd;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  font-family: 'Sen';
+} 
+
+.css-1yjjitx-MuiSwitch-track {
+  background-color: #473d72 !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+html {
+  box-sizing: border-box;
+}
+.MuiSwitch-thumb {
+  background-color: #312951;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+.MenuItem {
+  font-size: 18px;
+  margin: 10px;
+  justify-content: space-between;
   align-items: center;
+  display: flex;
+  cursor: pointer;
+}
+
+::selection {
+  background-color: var(--primary);
+  color: var(--light);
+}
+
+body {
+  color: var(--secondary);
+  background-color: var(--primary);
+  padding: 1rem;
+}
+
+.Search__Footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--light);
+  border-top: 1px solid var(--secondary);
+}
+
+.menu {
+  padding: 1rem 0.6rem 1rem;
+  margin: 0 auto;
+  max-width: 50rem;
+  background-color: var(--light);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.Header_Sticky {
+  position: sticky;
+  top: 20px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px;
+}
+
+.menu-item-photo {
+  height: 100px;
+  width: 100px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.Header {
+  max-width: 50rem;
+  margin: auto;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  margin-bottom: 10px;
+  margin-bottom: 30px;
+}
+
+.Logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 20px;
+  display: block;
+  object-fit: cover;
+}
+
+.Title {
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.SubTitle {
+  color: gray;
+  font-size: 18px;
+}
+.icon {
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.AddButton {
+  width: 100px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.IncDecButton {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100px;
+  background-color: var(--secondary);
+  color: white;
+  border-radius: 10px;
+  font-size: 14px;
+  height: 30px;
+}
+
+.MenuButton {
+  z-index: 1000;
+  padding-bottom: 20px;
+  cursor: pointer;
+  animation: fadeIn 0.3s;
+  transition: opacity 0.4s;
+  max-width: fit-content;
+  opacity: 1;
+}
+
+@media (min-width: 660px) {
+  .logo {
+    margin-bottom: 0;
   }
-  to {
-    transform: rotate(360deg);
+}
+
+.mains-name {
+  margin: 0;
+  flex-grow: 1;
+}
+
+.mains-description {
+  flex: 1 1 100%;
+  margin-right: 10px;
+  color: var(--secondary);
+}
+
+.aside {
+  grid-column: 2 / 3;
+}
+
+.extras {
+  color: var(--secondary);
+}
+
+.Footer {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  justify-content: center;
+}
+
+@media (min-width: 660px) {
+  .extras + .extras {
+    margin-top: 2.5rem;
   }
+}
+
+.extras .menu-item {
+  margin-bottom: 0.75rem;
+}
+
+.extras-heading {
+  margin: 0 0 1.5rem;
+  border-bottom: 1px solid var(--secondary);
+  width: 100%;
+}
+
+.extras-name {
+  flex-grow: 1;
+}
+
+.total {
+  border-top: 1px solid var(--secondary);
+}
+
+@media (min-width: 660px) {
+  .total {
+    margin-top: 0;
+  }
+}
+
+.total-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: "#473d72";
+}
+
+.total-price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #473d72;
 }

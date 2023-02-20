@@ -1,0 +1,133 @@
+{
+  "mains": [
+    {
+      "name": "The Caesar",
+      "description": "Crisp romaine lettuce tossed with our homemade Caesar dressing, croutons, and shredded parmesan cheese.",
+      "price": "190",
+      "type": "veg"
+    },
+    {
+      "name": "Surf & Turf",
+      "description": "A grilled, queen-cut ribeye served with shrimp and scallop alfredo.",
+      "price": "17",
+      "type": "veg"
+    },
+    {
+      "name": "Creamy Sage",
+      "description": "Chicken breast sautéed with fresh sage and prosciutto. Served atop creamy asiago linguini.",
+      "price": "21",
+      "type": "veg"
+    },
+    {
+      "name": "From the Sea",
+      "description": "Fresh haddock, gulf shrimp, and sea scallops dipped in beer batter and fried to a golden brown.",
+      "price": "23",
+      "type": "non-veg"
+    },
+    {
+      "name": "BB's Tenderloin",
+      "description": "Tenderloin tips, sautéed with bacon and mushrooms and finished with a bourbon-BBQ sauce.",
+      "price": "18",
+      "type": "veg"
+    },
+    {
+      "name": "Chicken Marsala",
+      "description": "Boneless chicken breast sautéed with mushrooms and finished in a marsala and cream reduction.",
+      "price": "22",
+      "type": "non-veg"
+    },
+    {
+      "name": "Chicken Bhuna",
+      "description": "Boneless chicken breast sautéed with mushrooms and finished in a marsala and cream reduction.",
+      "price": "22",
+      "type": "non-veg"
+    },
+    {
+      "name": "Chicken Kadai",
+      "description": "Boneless chicken breast sautéed with mushrooms and finished in a marsala and cream reduction.",
+      "price": "22",
+      "type": "non-veg"
+    }
+  ],
+  "sides": [
+    {
+      "name": "Fries",
+      "price": "5",
+      "type": "veg"
+    },
+    {
+      "name": "Onion Rings",
+      "price": "4",
+      "type": "veg"
+    },
+    {
+      "name": "Chicken Nuggets",
+      "price": "4",
+      "type": "non-veg"
+    },
+    {
+      "name": "Salad",
+      "price": "6",
+      "type": "veg"
+    },
+    {
+      "name": "Coleslaw",
+      "price": "5",
+      "type": "veg"
+    }
+  ],
+  "shakes": [
+    {
+      "name": "Choco Rocks",
+      "price": "240",
+      "type": "veg"
+    },
+    {
+      "name": "Onion Rings",
+      "price": "4",
+      "type": "veg"
+    },
+    {
+      "name": "Has Brown",
+      "price": "3",
+      "type": "veg"
+    }
+  ],
+  "drinks": [
+    {
+      "name": "Soft Drink",
+      "price": "4",
+      "type": "veg"
+    },
+    {
+      "name": "Orange Juice",
+      "price": "5",
+      "type": "veg"
+    },
+    {
+      "name": "Iced Tea",
+      "price": "4",
+      "type": "veg"
+    },
+    {
+      "name": "Coffee",
+      "price": "6",
+      "type": "veg"
+    },
+    {
+      "name": "Smoothie",
+      "price": "4",
+      "type": "veg"
+    },
+    {
+      "name": "Water",
+      "price": "2",
+      "type": "veg"
+    },
+    {
+      "name": "Mastani",
+      "price": "4",
+      "type": "veg"
+    }
+  ]
+}
