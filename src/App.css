@@ -8,6 +8,10 @@
   font-family: 'Sen';
 } 
 
+input, .MuiFormLabel-root {
+  font-family: 'Sen' !important;
+}
+
 .css-1yjjitx-MuiSwitch-track {
   background-color: #473d72 !important;
 }

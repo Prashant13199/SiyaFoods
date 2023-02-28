@@ -6,7 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import { Context } from "../Context";
 import data from "../data";
-import { IconButton } from '@mui/material';
+import { IconButton, Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
 import RemoveCircleOutlineRoundedIcon from '@mui/icons-material/RemoveCircleOutlineRounded';
@@ -14,11 +14,41 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
+import Alert from '@mui/material/Alert';
+import CloseIcon from '@mui/icons-material/Close';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Swal from 'sweetalert2';
 
 export default function Cart() {
 
     const [items, updateItem, clearItems] = useContext(Context);
     const [cart, setCart] = useState([]);
+    const [success, setSuccess] = useState("")
+    const [error, setError] = useState("")
+    const [errorName, setErrorName] = useState("")  
+    const [errorPhone, setErrorPhone] = useState("")    
+    const [open, setOpen] = useState(false);
+    const [name, setName] = useState("")
+    const [phone, setPhone] = useState("")
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+        setError("")
+        setErrorName("")
+        setErrorPhone("")
+        setName("")
+        setPhone("")
+        setSuccess("")
+    };
 
     const totalPrice = Object.keys(items).reduce((acc, curr) => {
         const [group, item] = curr.split("-");
@@ -38,8 +68,128 @@ export default function Cart() {
         setCart(arr)
     },[updateItem, items])
 
+    const placeOrder = () => {
+        if(name.length===0) {
+            setErrorName('Please Enter name')
+            return
+        }
+        if(phone.length!==10) {
+            setErrorName("")
+            setErrorPhone('Please Enter phone number')
+            return
+        }
+        let final = []
+        var seen = [];
+        final.push({ 'Customer Name': name, 'phone': phone })
+        cart.forEach((item) => {
+            final.push({ 'name': item.name, "quantity": item.quantity, "amount": item.amount })
+        })
+        final.push({ 'total price': totalPrice })
+        let message = JSON.stringify(final, function(key, val) {
+            if (val != null && typeof val == "object") {
+                    if (seen.indexOf(val) >= 0) {
+                        return;
+                    }
+                    seen.push(val);
+                }
+                return val;
+            }, '\t')
+        fetch(`https://api.telegram.org/bot6240181449:AAHQnBaEIpgcy_TeC-p89cRRHovqNAsMD9c/sendMessage?chat_id=5448964260&text=${encodeURI(message)}`).then((response) => {
+            if(response.ok) {
+                handleClose()
+                Swal.fire({
+                    title: 'Success?',
+                    text: "Your order has been placed!",
+                    icon: 'success',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK',
+                  })
+            }else {
+                Swal.fire({
+                    title: 'Error',
+                    text: "Error Occured, Please try again!",
+                    icon: 'warning',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK',
+                  })
+            }
+        }).catch((e) => 
+            Swal.fire({
+                title: 'Error',
+                text: "Error Occured, Please try again!",
+                icon: 'warning',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK',
+            })
+        )
+    }
+
     return (
         <>
+            {success && <Alert severity="success" action={
+                <IconButton
+                aria-label="close"
+                color="inherit"
+                size="small"
+                onClick={() => {
+                    setSuccess("");
+                }}
+                >
+                <CloseIcon fontSize="inherit" />
+                </IconButton>
+            }>{success}</Alert>} 
+            {error && <Alert severity="error" action={
+                <IconButton
+                aria-label="close"
+                color="inherit"
+                size="small"
+                onClick={() => {
+                    setError("");
+                }}
+                >
+                <CloseIcon fontSize="inherit" />
+                </IconButton>
+            }>{error}</Alert>}
+          <Dialog open={open} onClose={handleClose} style={{fontFamily: 'Sen'}}>
+            <DialogTitle style={{fontFamily: 'Sen'}}>Confirm</DialogTitle>
+            <DialogContent>
+            <DialogContentText style={{fontFamily: 'Sen'}}>
+                Please provide details to place order
+            </DialogContentText>
+            <TextField
+                style={{fontFamily: 'Sen'}}
+                autoFocus
+                margin="dense"
+                id="name"
+                label="Name"
+                type="text"
+                fullWidth
+                variant="standard"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                helperText={errorName && "Please enter a name"}
+                error={errorName}
+            />
+            <TextField
+                margin="dense"
+                id="phone"
+                label="Phone Number"
+                type="tel"
+                fullWidth
+                variant="standard"
+                required
+                value={phone}
+                onChange={(e) =>  setPhone(e.target.value)}
+                helperText={errorPhone && "Please enter a valid phone number"}
+                error={errorPhone}
+            />
+            </DialogContent>
+            <DialogActions>
+            <Button style={{ color: '#473d72', fontFamily: 'Sen' }} onClick={handleClose}>Cancel</Button>
+            <Button style={{ color: '#473d72', fontFamily: 'Sen' }} onClick={() => placeOrder()}>Place Order</Button>
+            </DialogActions>
+        </Dialog>
             <div className="menu">
                 <Navbar bg="light" variant="light" sticky="top" style={{height: '50px'}}>
                     <Container>
@@ -54,7 +204,7 @@ export default function Cart() {
                             </div>
                         </div>
                         {totalPrice > 0 && <div onClick={() => clearItems()}>
-                            <div style={{ backgroundColor: "#473d72", color: 'white', width: 'fit-content', padding: '5px 10px', borderRadius: '10px', cursor: 'pointer' }}><DeleteIcon /> Clear cart</div>
+                            <div style={{ backgroundColor: "#473d72", color: 'white', width: 'fit-content', padding: '5px', borderRadius: '10px', cursor: 'pointer' }}><DeleteIcon /></div>
                         </div>}
                     </Container>
                 </Navbar>
@@ -105,15 +255,21 @@ export default function Cart() {
                 }
                 {totalPrice > 0 && <Navbar bg="light" variant="light" sticky="bottom" style={{height: '50px'}}> 
                     <Container className='total'>
-                        <div className="total-title">
-                                Total: 
-                            <div style={{fontSize: '8px',color: "#473d72"}}>
+                        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                            <span className="total-title">
+                            <div>
+                                &#8377;{totalPrice}
+                            </div>
+                            <div style={{fontSize: '8px'}}>
                                 Extra Charges may apply
                             </div>
+                            </span>
                         </div>
-                        <div className='total-price'>
-                            &#8377;{totalPrice}          
-                        </div>
+                        <Button onClick={() => handleClickOpen()} sx={{fontFamily: 'Sen',fontSize: '14px',borderRadius: '10px',height: '30px', color: 'white',backgroundColor: '#473d72','&:hover': {
+                            color: 'white',
+                            backgroundColor: '#473d72',
+                            borderColor: '#473d72',
+                        },}} variant="contained">Place Order</Button>
                     </Container>
                 </Navbar>}
             </div>
