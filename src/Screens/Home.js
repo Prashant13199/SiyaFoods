@@ -11,6 +11,8 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import { Context } from '../Context';
 import CloseIcon from '@mui/icons-material/Close';
+import ListIcon from '@mui/icons-material/List';
+import PreviousOrder from './PreviousOrder';
 
 export default function Home() {
   const[veg, setVeg] = useState(false)
@@ -25,6 +27,8 @@ export default function Home() {
   const [shakes, setShakes] = useState([])
 
   const [items] = useContext(Context);
+
+  const lastOrder = JSON.parse(localStorage.getItem("lastOrder"))
 
   const totalPrice = Object.keys(items).reduce((acc, curr) => {
     const [group, item] = curr.split("-");
@@ -149,10 +153,32 @@ export default function Home() {
                 </Button>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <Button size='small' onClick={() => handleShow1()} sx={{ width: '100px', borderRadius: '10px', fontFamily: 'Sen', backgroundColor: "#473d72",'&:hover': { backgroundColor: "#473d72" },
+              {/* <Link to="/previousOrder">
+              <Button size='small' sx={{ width: '100px', borderRadius: '10px', fontFamily: 'Sen', backgroundColor: "#473d72",'&:hover': { backgroundColor: "#473d72" },
+                '&:active': { backgroundColor: "#473d72" }, '&:focus': { backgroundColor: "#473d72" }, }} startIcon={<RestaurantMenuIcon />} variant="contained">
+                Prev
+              </Button>
+              </Link> */}
+              {/* <Button size='small' onClick={() => handleShow1()} sx={{ width: '100px', borderRadius: '10px', fontFamily: 'Sen', backgroundColor: "#473d72",'&:hover': { backgroundColor: "#473d72" },
                 '&:active': { backgroundColor: "#473d72" }, '&:focus': { backgroundColor: "#473d72" }, }} startIcon={<RestaurantMenuIcon />} variant="contained">
                 Menu
-              </Button>
+              </Button> */}
+              {lastOrder && <Link to="/previousOrder">
+                <IconButton size='small' style={{
+                  backgroundColor: "#473d72",
+                  marginLeft: '10px'
+                }}>
+                    <ListIcon sx={{color: 'white'}} />
+                </IconButton>
+              </Link>}
+              <Link onClick={() => handleShow1()}>
+                <IconButton size='small' style={{
+                  backgroundColor: "#473d72",
+                  marginLeft: '10px'
+                }}>
+                    <RestaurantMenuIcon sx={{color: 'white'}} />
+                </IconButton>
+              </Link>
               <Link to='/search'>
                 <IconButton size='small' style={{
                   backgroundColor: "#473d72",
@@ -198,7 +224,6 @@ export default function Home() {
         </Container>
       </Navbar>}
       </div>
-      
     </>
   )
 }

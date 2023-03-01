@@ -35,6 +35,7 @@ export default function Cart() {
     const [open, setOpen] = useState(false);
     const [name, setName] = useState("")
     const [phone, setPhone] = useState("")
+    const lastOrder = localStorage.getItem("lastOrder")
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -70,12 +71,13 @@ export default function Cart() {
 
     const placeOrder = () => {
         if(name.length===0) {
-            setErrorName('Please Enter name')
+            setErrorName('Please Enter Name')
             return
         }
-        if(phone.length!==10) {
+        let isnum = /^\d+$/.test(phone);
+        if(phone.length!==10 && isnum) {
             setErrorName("")
-            setErrorPhone('Please Enter phone number')
+            setErrorPhone('Please Enter Valid Phone Number')
             return
         }
         let final = []
@@ -104,6 +106,23 @@ export default function Cart() {
                     confirmButtonColor: '#3085d6',
                     confirmButtonText: 'OK',
                   })
+                .then((result) => {
+                if (result.isConfirmed) {
+                    if(lastOrder){
+                        let order;
+                        order = JSON.parse(lastOrder)
+                        order.push({ 'date': Date.now(), 'order': cart, 'cname': name, 'cphone': phone, 'total': totalPrice })
+                        localStorage.setItem('lastOrder', JSON.stringify(order))
+                    }else{
+                        let order = []
+                        order.push({ 'date': Date.now(), 'order': cart, 'cname': name, 'cphone': phone, 'total': totalPrice })
+                        localStorage.setItem('lastOrder', JSON.stringify(order))
+                    }
+                    clearItems()
+                    window.location.replace('/')
+                }
+                })
+                
             }else {
                 Swal.fire({
                     title: 'Error',

@@ -8,6 +8,7 @@ import Home from "./Screens/Home";
 import Cart from "./Screens/Cart";
 import { Provider } from "./Context";
 import Search from "./Screens/Search";
+import PreviousOrder from "./Screens/PreviousOrder";
 
 export default function App() {
 
@@ -35,6 +36,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/search" element={<Search />} />
+            <Route path="/previousorder" element={<PreviousOrder />} />
           </Route>
         </Routes>
       </BrowserRouter>
