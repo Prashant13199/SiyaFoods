@@ -35,6 +35,7 @@ export default function Cart() {
     const [open, setOpen] = useState(false);
     const [name, setName] = useState("")
     const [phone, setPhone] = useState("")
+    const [processing, setProcessing] = useState(false)
     const lastOrder = localStorage.getItem("lastOrder")
 
     const handleClickOpen = () => {
@@ -42,6 +43,7 @@ export default function Cart() {
     };
 
     const handleClose = () => {
+        setProcessing(false)
         setOpen(false);
         setError("")
         setErrorName("")
@@ -80,6 +82,7 @@ export default function Cart() {
             setErrorPhone('Please Enter Valid Phone Number')
             return
         }
+        setProcessing(true)
         let final = []
         var seen = [];
         final.push({ 'Customer Name': name, 'phone': phone })
@@ -118,12 +121,14 @@ export default function Cart() {
                         order.push({ 'date': Date.now(), 'order': cart, 'cname': name, 'cphone': phone, 'total': totalPrice })
                         localStorage.setItem('lastOrder', JSON.stringify(order))
                     }
+                    setProcessing(false)
                     clearItems()
                     window.location.replace('/')
                 }
                 })
                 
             }else {
+                setProcessing(false)
                 Swal.fire({
                     title: 'Error',
                     text: "Error Occured, Please try again!",
@@ -132,14 +137,16 @@ export default function Cart() {
                     confirmButtonText: 'OK',
                   })
             }
-        }).catch((e) => 
-            Swal.fire({
-                title: 'Error',
-                text: "Error Occured, Please try again!",
-                icon: 'warning',
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: 'OK',
-            })
+        }).catch((e) => {
+                setProcessing(false)
+                Swal.fire({
+                    title: 'Error',
+                    text: "Error Occured, Please try again!",
+                    icon: 'warning',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK',
+                })
+            }
         )
     }
 
@@ -206,7 +213,7 @@ export default function Cart() {
             </DialogContent>
             <DialogActions>
             <Button style={{ color: '#473d72', fontFamily: 'Sen' }} onClick={handleClose}>Cancel</Button>
-            <Button style={{ color: '#473d72', fontFamily: 'Sen' }} onClick={() => placeOrder()}>Place Order</Button>
+            {!processing ? <Button style={{ color: '#473d72', fontFamily: 'Sen' }} onClick={() => placeOrder()}>Place Order</Button> : <Button style={{ color: '#473d72', fontFamily: 'Sen' }}>Placing Order ...</Button> }
             </DialogActions>
         </Dialog>
             <div className="menu">
