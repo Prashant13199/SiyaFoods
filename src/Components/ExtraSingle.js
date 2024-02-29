@@ -3,6 +3,7 @@ import { Context } from "../Context";
 import { IconButton, Button } from '@mui/material';
 import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
 import RemoveCircleOutlineRoundedIcon from '@mui/icons-material/RemoveCircleOutlineRounded';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function ExtraSingle({ item, index, type, setExtraCount }) {
   const [value, setValue] = useState(0);
@@ -20,9 +21,11 @@ export default function ExtraSingle({ item, index, type, setExtraCount }) {
   return (
     <article className="menu-item" key={index} id={item.name}>
       <div>
-        {item.type && <img alt="" src={item.type === "veg" ? "https://img.icons8.com/color/512/vegetarian-food-symbol.png" : "https://img.icons8.com/color/512/non-vegetarian-food-symbol.png"} style={{ height: "20px", width: "20px" }} />}
         {item?.bestseller && <div className="bestseller">BestSeller <img style={{ height: '16px', width: '16px', marginBottom: '2px' }} src="https://img.icons8.com/fluency/48/star--v1.png" /></div>}
-        <div className="extras-name">{item.name}</div>
+        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+          {item.type && <img alt="" src={item.type === "veg" ? "https://img.icons8.com/color/512/vegetarian-food-symbol.png" : "https://img.icons8.com/color/512/non-vegetarian-food-symbol.png"} style={{ height: "20px", width: "20px" }} />}
+          <div className="extras-name">{item.name}</div>
+        </div>
         <strong className="extras-price">&#8377;{item.price}</strong>
       </div>
       <div>
@@ -41,7 +44,7 @@ export default function ExtraSingle({ item, index, type, setExtraCount }) {
               updateItem(type, index, value - 1)
             }
           }}>
-            <RemoveCircleOutlineRoundedIcon sx={{ fontSize: '14px' }} className="icon" />
+            {value === 1 ? <DeleteIcon sx={{ fontSize: '14px' }} className="icon" /> : <RemoveCircleOutlineRoundedIcon sx={{ fontSize: '14px' }} className="icon" />}
           </IconButton>
             <strong style={{ fontFamily: "Sen" }}>{value}</strong>
             <IconButton onClick={() => {

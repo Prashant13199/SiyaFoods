@@ -11,7 +11,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
 import RemoveCircleOutlineRoundedIcon from '@mui/icons-material/RemoveCircleOutlineRounded';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { Link } from 'react-router-dom';
+import { Link, redirect } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Alert from '@mui/material/Alert';
@@ -23,6 +23,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Swal from 'sweetalert2';
+import '../App.css'
 
 export default function Cart() {
 
@@ -163,6 +164,7 @@ export default function Cart() {
             .then((result) => {
                 if (result.isConfirmed) {
                     clearItems()
+
                     Swal.fire({
                         title: 'Success',
                         text: "Cart cleared!",
@@ -170,6 +172,8 @@ export default function Cart() {
                         confirmButtonColor: '#3085d6',
                         showConfirmButton: false,
                         timer: 1000
+                    }).then(() => {
+                        window.location.replace('/')
                     })
                 }
             })
@@ -260,7 +264,7 @@ export default function Cart() {
                         </div>}
                     </Container>
                 </Navbar>
-                {cart.length > 0 ? <><div style={{ minHeight: window.innerHeight - 165 }}>
+                {cart.length > 0 ? <><div style={{ minHeight: window.innerHeight - 185 }}>
                     <TableContainer>
                         <Table>
                             <TableBody>
@@ -305,26 +309,28 @@ export default function Cart() {
                         <div>No items</div>
                     </div>
                 }
-                {totalPrice > 0 && <Navbar bg="light" variant="light" sticky="bottom" style={{ height: '50px' }}>
-                    <Container className='total'>
-                        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                            <span className="total-title">
-                                <div>
-                                    &#8377;{totalPrice}
-                                </div>
-                                <div style={{ fontSize: '8px' }}>
-                                    Extra Charges may apply
-                                </div>
-                            </span>
+                {totalPrice > 0 && <Navbar bg="light" variant="light" sticky="bottom">
+                    <div style={{ width: '100%' }}>
+                        <div className='total'>
+                            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                <span className="total-title">
+                                    <div>
+                                        &#8377;{totalPrice}
+                                    </div>
+                                    <div style={{ fontSize: '8px' }}>
+                                        Extra Charges may apply
+                                    </div>
+                                </span>
+                            </div>
+                            <Button onClick={() => handleClickOpen()} sx={{
+                                fontFamily: 'Sen', fontSize: '14px', width: '140px', borderRadius: '10px', height: '30px', color: 'white', backgroundColor: '#473d72', '&:hover': {
+                                    color: 'white',
+                                    backgroundColor: '#473d72',
+                                    borderColor: '#473d72',
+                                },
+                            }} variant="contained">Place Order</Button>
                         </div>
-                        <Button onClick={() => handleClickOpen()} sx={{
-                            fontFamily: 'Sen', fontSize: '14px', width: '140px', borderRadius: '10px', height: '30px', color: 'white', backgroundColor: '#473d72', '&:hover': {
-                                color: 'white',
-                                backgroundColor: '#473d72',
-                                borderColor: '#473d72',
-                            },
-                        }} variant="contained">Place Order</Button>
-                    </Container>
+                    </div>
                 </Navbar>}
             </div>
 

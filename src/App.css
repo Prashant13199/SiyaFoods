@@ -70,7 +70,7 @@ body {
 }
 
 .menu {
-  padding: 1rem 0.6rem 1rem;
+  padding: 1rem 2rem 0rem;
   margin: 0 auto;
   max-width: 50rem;
   background-color: var(--light);
@@ -92,10 +92,11 @@ body {
 }
 
 .menu-item-photo {
-  height: 100px;
-  width: 100px;
-  border-radius: 20px;
+  height: 120px;
+  width: 120px;
+  border-radius: 10px;
   object-fit: cover;
+  position: relative;
 }
 
 .Header {
@@ -109,8 +110,8 @@ body {
 }
 
 .Logo {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   border-radius: 20px;
   display: block;
   object-fit: cover;
@@ -144,7 +145,7 @@ body {
   color: white;
   border-radius: 10px;
   font-size: 14px;
-  height: 30px;
+  height: 40px;
 }
 
 .MenuButton {
@@ -157,9 +158,22 @@ body {
   opacity: 1;
 }
 
+.mains-name {
+  margin: 0;
+  flex-grow: 1;
+  font-size: 18px;
+  margin-left: 5px !important;
+}
+
 @media (min-width: 660px) {
   .logo {
     margin-bottom: 0;
+  }
+}
+
+@media (max-width: 660px) {
+  .menu {
+    padding: 1rem 0.6rem 0rem;
   }
 }
 
@@ -203,10 +217,12 @@ body {
   margin: 0 0 1.5rem;
   border-bottom: 1px solid var(--secondary);
   width: 100%;
+  font-size: 22px;
 }
 
 .extras-name {
   flex-grow: 1;
+  margin-left: 5px !important;
 }
 
 .total {
@@ -215,6 +231,7 @@ body {
   align-items: center;
   justify-content: space-between;
   background-color: white;
+  padding: 10px 0px !important;
 }
 
 @media (min-width: 660px) {
