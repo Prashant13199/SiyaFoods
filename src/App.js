@@ -28,19 +28,19 @@ export default function App() {
       logoSrc={logo}
       textColor='white'
       text='Siya Foods'
-    > 
-    <Provider>
-      <BrowserRouter>
-        <Routes>
-          <Route>
-            <Route path="/" element={<Home />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/search" element={<Search />} />
-            <Route path="/previousorder" element={<PreviousOrder />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </Provider>
+    >
+      <Provider>
+        <BrowserRouter>
+          <Routes>
+            <Route>
+              <Route path="/" element={<Home />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/search" element={<Search />} />
+              <Route path="/previousorder" element={<PreviousOrder />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </Provider>
     </LoadingScreen>
   );
 }

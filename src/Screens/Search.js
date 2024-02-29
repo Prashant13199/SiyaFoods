@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState, useContext } from 'react';
 import ExtraSingle from '../Components/ExtraSingle';
 import MainsSingle from '../Components/MainsSingle';
 import data from '../data';
@@ -16,44 +16,44 @@ import { Button } from '@mui/material';
 export default function Search() {
 
     const [meals, setMeals] = useState([])
-    const[value, setValue] = useState("")
+    const [value, setValue] = useState("")
     const [items] = useContext(Context);
 
     const totalPrice = Object.keys(items).reduce((acc, curr) => {
         const [group, item] = curr.split("-");
         const amount = items[curr] * data[group][item].price;
         return acc + amount;
-      }, 0);
+    }, 0);
 
     useEffect(() => {
-        if(value){
+        if (value) {
             let arr = []
             data.mains.map((item, index) => {
-                if(item.name.toLowerCase().includes(value.toLowerCase()) && item.name.toLowerCase().match(value.toLowerCase())){
-                    arr.push({"item": item, "index": index, "type" : 'mains'})
+                if (item.name.toLowerCase().includes(value.toLowerCase()) && item.name.toLowerCase().match(value.toLowerCase())) {
+                    arr.push({ "item": item, "index": index, "type": 'mains' })
                 }
             })
             data.sides.map((item, index) => {
-                if(item.name.toLowerCase().includes(value.toLowerCase()) && item.name.toLowerCase().match(value.toLowerCase())){
-                    arr.push({"item": item, "index": index, "type" : 'sides'})
+                if (item.name.toLowerCase().includes(value.toLowerCase()) && item.name.toLowerCase().match(value.toLowerCase())) {
+                    arr.push({ "item": item, "index": index, "type": 'sides' })
                 }
             })
             data.drinks.map((item, index) => {
-                if(item.name.toLowerCase().includes(value.toLowerCase()) && item.name.toLowerCase().match(value.toLowerCase())){
-                    arr.push({"item": item, "index": index, "type" : 'drinks'})
+                if (item.name.toLowerCase().includes(value.toLowerCase()) && item.name.toLowerCase().match(value.toLowerCase())) {
+                    arr.push({ "item": item, "index": index, "type": 'drinks' })
                 }
             })
             data.shakes.map((item, index) => {
-                if(item.name.toLowerCase().includes(value.toLowerCase()) && item.name.toLowerCase().match(value.toLowerCase())){
-                    arr.push({"item": item, "index": index, "type" : 'shakes'})
+                if (item.name.toLowerCase().includes(value.toLowerCase()) && item.name.toLowerCase().match(value.toLowerCase())) {
+                    arr.push({ "item": item, "index": index, "type": 'shakes' })
                 }
             })
             setMeals(arr)
-        }else{
+        } else {
             setMeals([])
         }
-    },[value])
-    
+    }, [value])
+
     const handleChange = (e) => {
         setValue(e)
     }
@@ -68,7 +68,7 @@ export default function Search() {
                         </Link>
                     </IconButton>
                     <InputBase
-                        autoFocus   
+                        autoFocus
                         sx={{ ml: 1, flex: 1 }}
                         placeholder="Search Dish"
                         value={value}
@@ -79,30 +79,32 @@ export default function Search() {
                     </IconButton>}
                 </Paper>
             </Navbar>
-            <div style={{margin: '10px', minHeight: '60vh'}}>
+            <div style={{ margin: '10px', minHeight: window.innerHeight - 160 }}>
                 {meals && meals.map((item) => {
-                    return item.type==="mains" ? <MainsSingle meal={item.item} index={item.index} type={item.type} key={item.item.name} />
-                    : <ExtraSingle item={item.item} index={item.index} type={item.type} key={item.item.name} />
+                    return item.type === "mains" ? <MainsSingle meal={item.item} index={item.index} type={item.type} key={item.item.name} />
+                        : <ExtraSingle item={item.item} index={item.index} type={item.type} key={item.item.name} />
                 })}
             </div>
-            {totalPrice> 0 && <Navbar bg="light" variant="light" sticky="bottom" style={{height: '50px'}}>
+            {totalPrice > 0 && <Navbar bg="light" variant="light" sticky="bottom" style={{ height: '50px' }}>
                 <Container className='total'>
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <span className="total-title">
-                        <div>
-                            &#8377;{totalPrice}
-                        </div>
-                        <div style={{fontSize: '8px'}}>
-                            Extra Charges may apply
-                        </div>
+                            <div>
+                                &#8377;{totalPrice}
+                            </div>
+                            <div style={{ fontSize: '8px' }}>
+                                Extra Charges may apply
+                            </div>
                         </span>
                     </div>
-                    <Link to="/cart" style={{textDecoration: 'none'}}>
-                        <Button sx={{fontFamily: 'Sen',fontSize: '14px',borderRadius: '10px',height: '30px', color: 'white',backgroundColor: '#473d72','&:hover': {
-                            color: 'white',
-                            backgroundColor: '#473d72',
-                            borderColor: '#473d72',
-                        },}} variant="contained">View cart</Button>
+                    <Link to="/cart" style={{ textDecoration: 'none' }}>
+                        <Button sx={{
+                            fontFamily: 'Sen', fontSize: '14px', borderRadius: '10px', height: '30px', color: 'white', backgroundColor: '#473d72', '&:hover': {
+                                color: 'white',
+                                backgroundColor: '#473d72',
+                                borderColor: '#473d72',
+                            },
+                        }} variant="contained">View cart</Button>
                     </Link>
                 </Container>
             </Navbar>}

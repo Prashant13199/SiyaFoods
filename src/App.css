@@ -6,9 +6,10 @@
 
 * {
   font-family: 'Sen';
-} 
+}
 
-input, .MuiFormLabel-root {
+input,
+.MuiFormLabel-root {
   font-family: 'Sen' !important;
 }
 
@@ -16,9 +17,20 @@ input, .MuiFormLabel-root {
   background-color: #473d72 !important;
 }
 
+.bestseller {
+  background-color: #473d72;
+  border-radius: 6px;
+  color: white;
+  width: fit-content;
+  padding: 2px 4px;
+  font-size: 12px;
+  margin: 5px 0px;
+}
+
 html {
   box-sizing: border-box;
 }
+
 .MuiSwitch-thumb {
   background-color: #312951;
 }
@@ -28,6 +40,7 @@ html {
 *:after {
   box-sizing: inherit;
 }
+
 .MenuItem {
   font-size: 18px;
   margin: 10px;
@@ -113,6 +126,7 @@ body {
   color: gray;
   font-size: 18px;
 }
+
 .icon {
   color: white;
 }
@@ -176,7 +190,7 @@ body {
 }
 
 @media (min-width: 660px) {
-  .extras + .extras {
+  .extras+.extras {
     margin-top: 2.5rem;
   }
 }
@@ -197,6 +211,10 @@ body {
 
 .total {
   border-top: 1px solid var(--secondary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
 }
 
 @media (min-width: 660px) {

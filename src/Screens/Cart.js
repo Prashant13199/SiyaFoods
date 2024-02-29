@@ -150,6 +150,31 @@ export default function Cart() {
         )
     }
 
+    const handleClearCart = () => {
+        Swal.fire({
+            title: 'Clear cart!',
+            text: "Are you sure to clear cart?",
+            icon: 'danger',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'No',
+            showCancelButton: true
+        })
+            .then((result) => {
+                if (result.isConfirmed) {
+                    clearItems()
+                    Swal.fire({
+                        title: 'Success',
+                        text: "Cart cleared!",
+                        icon: 'success',
+                        confirmButtonColor: '#3085d6',
+                        showConfirmButton: false,
+                        timer: 1000
+                    })
+                }
+            })
+    }
+
     return (
         <>
             {success && <Alert severity="success" action={
@@ -219,10 +244,10 @@ export default function Cart() {
             </Dialog >
             <div className="menu">
                 <Navbar bg="light" variant="light" sticky="top" style={{ height: '50px' }}>
-                    <Container>
+                    <Container style={{ padding: 0 }}>
                         <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
                             <IconButton>
-                                <Link to='/' style={{ color: '#473d72' }}>
+                                <Link to='/' style={{ color: '#473d72', width: '100%' }}>
                                     <ArrowBackIcon />
                                 </Link>
                             </IconButton>
@@ -230,12 +255,12 @@ export default function Cart() {
                                 Cart
                             </div>
                         </div>
-                        {totalPrice > 0 && <div onClick={() => clearItems()}>
-                            <div style={{ backgroundColor: "#473d72", color: 'white', width: 'fit-content', padding: '5px', borderRadius: '10px', cursor: 'pointer' }}><DeleteIcon /></div>
+                        {totalPrice > 0 && <div onClick={() => handleClearCart()}>
+                            <div style={{ backgroundColor: "#473d72", color: 'white', width: 'fit-content', padding: '7px', borderRadius: '10px', cursor: 'pointer' }}><DeleteIcon /> Clear cart</div>
                         </div>}
                     </Container>
                 </Navbar>
-                {cart.length > 0 ? <><div style={{ minHeight: '60vh' }}>
+                {cart.length > 0 ? <><div style={{ minHeight: window.innerHeight - 165 }}>
                     <TableContainer>
                         <Table>
                             <TableBody>
@@ -276,7 +301,7 @@ export default function Cart() {
                 </div>
                 </>
                     :
-                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px', minHeight: window.innerHeight - 135 }}>
                         <div>No items</div>
                     </div>
                 }
@@ -293,7 +318,7 @@ export default function Cart() {
                             </span>
                         </div>
                         <Button onClick={() => handleClickOpen()} sx={{
-                            fontFamily: 'Sen', fontSize: '14px', borderRadius: '10px', height: '30px', color: 'white', backgroundColor: '#473d72', '&:hover': {
+                            fontFamily: 'Sen', fontSize: '14px', width: '140px', borderRadius: '10px', height: '30px', color: 'white', backgroundColor: '#473d72', '&:hover': {
                                 color: 'white',
                                 backgroundColor: '#473d72',
                                 borderColor: '#473d72',

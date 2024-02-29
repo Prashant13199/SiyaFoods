@@ -7,16 +7,15 @@ import SearchIcon from '@mui/icons-material/Search';
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
 import { IconButton, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import { Context } from '../Context';
-import CloseIcon from '@mui/icons-material/Close';
 import ListIcon from '@mui/icons-material/List';
-import PreviousOrder from './PreviousOrder';
 
 export default function Home() {
+
   const [veg, setVeg] = useState(false)
   const [nonveg, setNonVeg] = useState(false)
+  const [bestseller, setBestseller] = useState(false)
   const [show1, setShow1] = useState(false);
   const handleClose1 = () => setShow1(false);
   const handleShow1 = () => setShow1(true);
@@ -39,11 +38,28 @@ export default function Home() {
   useEffect(() => {
     let arrayMains = []
     data.mains.map((meal, index) => {
-      if (veg && meal.type === 'veg') {
-        arrayMains.push({ "meal": meal, "index": index })
-      } else if (nonveg && meal.type === 'non-veg') {
-        arrayMains.push({ "meal": meal, "index": index })
-      } else if (!veg && !nonveg) {
+      if (bestseller && !veg && !nonveg) {
+        if (meal?.bestseller)
+          arrayMains.push({ "meal": meal, "index": index })
+      }
+      if (!bestseller && veg && !nonveg) {
+        if (meal?.type === 'veg')
+          arrayMains.push({ "meal": meal, "index": index })
+      }
+      if (bestseller && veg && !nonveg) {
+        if (meal?.type === 'veg' && meal?.bestseller) {
+          arrayMains.push({ "meal": meal, "index": index })
+        }
+      }
+      if (!bestseller && !veg && nonveg) {
+        if (meal?.type === 'non-veg')
+          arrayMains.push({ "meal": meal, "index": index })
+      }
+      if (bestseller && !veg && nonveg) {
+        if (meal?.type === 'non-veg' && meal?.bestseller)
+          arrayMains.push({ "meal": meal, "index": index })
+      }
+      if (!bestseller && !veg && !nonveg) {
         arrayMains.push({ "meal": meal, "index": index })
       }
     })
@@ -51,11 +67,28 @@ export default function Home() {
 
     let arraySides = []
     data.sides.map((meal, index) => {
-      if (veg && meal.type === 'veg') {
-        arraySides.push({ "meal": meal, "index": index })
-      } else if (nonveg && meal.type === 'non-veg') {
-        arraySides.push({ "meal": meal, "index": index })
-      } else if (!veg && !nonveg) {
+      if (bestseller && !veg && !nonveg) {
+        if (meal?.bestseller)
+          arraySides.push({ "meal": meal, "index": index })
+      }
+      if (!bestseller && veg && !nonveg) {
+        if (meal?.type === 'veg')
+          arraySides.push({ "meal": meal, "index": index })
+      }
+      if (bestseller && veg && !nonveg) {
+        if (meal?.type === 'veg' && meal?.bestseller) {
+          arraySides.push({ "meal": meal, "index": index })
+        }
+      }
+      if (!bestseller && !veg && nonveg) {
+        if (meal?.type === 'non-veg')
+          arraySides.push({ "meal": meal, "index": index })
+      }
+      if (bestseller && !veg && nonveg) {
+        if (meal?.type === 'non-veg' && meal?.bestseller)
+          arraySides.push({ "meal": meal, "index": index })
+      }
+      if (!bestseller && !veg && !nonveg) {
         arraySides.push({ "meal": meal, "index": index })
       }
     })
@@ -63,11 +96,28 @@ export default function Home() {
 
     let arrayDrinks = []
     data.drinks.map((meal, index) => {
-      if (veg && meal.type === 'veg') {
-        arrayDrinks.push({ "meal": meal, "index": index })
-      } else if (nonveg && meal.type === 'non-veg') {
-        arrayDrinks.push({ "meal": meal, "index": index })
-      } else if (!veg && !nonveg) {
+      if (bestseller && !veg && !nonveg) {
+        if (meal?.bestseller)
+          arrayDrinks.push({ "meal": meal, "index": index })
+      }
+      if (!bestseller && veg && !nonveg) {
+        if (meal?.type === 'veg')
+          arrayDrinks.push({ "meal": meal, "index": index })
+      }
+      if (bestseller && veg && !nonveg) {
+        if (meal?.type === 'veg' && meal?.bestseller) {
+          arrayDrinks.push({ "meal": meal, "index": index })
+        }
+      }
+      if (!bestseller && !veg && nonveg) {
+        if (meal?.type === 'non-veg')
+          arrayDrinks.push({ "meal": meal, "index": index })
+      }
+      if (bestseller && !veg && nonveg) {
+        if (meal?.type === 'non-veg' && meal?.bestseller)
+          arrayDrinks.push({ "meal": meal, "index": index })
+      }
+      if (!bestseller && !veg && !nonveg) {
         arrayDrinks.push({ "meal": meal, "index": index })
       }
     })
@@ -75,17 +125,34 @@ export default function Home() {
 
     let arrayShakes = []
     data.shakes.map((meal, index) => {
-      if (veg && meal.type === 'veg') {
-        arrayShakes.push({ "meal": meal, "index": index })
-      } else if (nonveg && meal.type === 'non-veg') {
-        arrayShakes.push({ "meal": meal, "index": index })
-      } else if (!veg && !nonveg) {
+      if (bestseller && !veg && !nonveg) {
+        if (meal?.bestseller)
+          arrayShakes.push({ "meal": meal, "index": index })
+      }
+      if (!bestseller && veg && !nonveg) {
+        if (meal?.type === 'veg')
+          arrayShakes.push({ "meal": meal, "index": index })
+      }
+      if (bestseller && veg && !nonveg) {
+        if (meal?.type === 'veg' && meal?.bestseller) {
+          arrayShakes.push({ "meal": meal, "index": index })
+        }
+      }
+      if (!bestseller && !veg && nonveg) {
+        if (meal?.type === 'non-veg')
+          arrayShakes.push({ "meal": meal, "index": index })
+      }
+      if (bestseller && !veg && nonveg) {
+        if (meal?.type === 'non-veg' && meal?.bestseller)
+          arrayShakes.push({ "meal": meal, "index": index })
+      }
+      if (!bestseller && !veg && !nonveg) {
         arrayShakes.push({ "meal": meal, "index": index })
       }
     })
     setShakes(arrayShakes)
 
-  }, [veg, nonveg])
+  }, [veg, nonveg, bestseller])
 
   const list = [
     { "name": "Main Course", "id": 'mains', "count": mains.length },
@@ -102,6 +169,10 @@ export default function Home() {
   const handleChangeNonVeg = () => {
     setNonVeg(!nonveg)
     setVeg(false)
+  }
+
+  const handleChangeBestSeller = () => {
+    setBestseller(!bestseller)
   }
 
   const handleScroll = (id) => {
@@ -140,33 +211,53 @@ export default function Home() {
         </div>
       </div>
       <div className="menu">
-        <Navbar bg="light" variant="light" sticky="top" style={{ marginBottom: '10px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <Navbar bg="light" variant="light" sticky="top" style={{ marginBottom: '15px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
               <Button size='small' onClick={() => handleChangeVeg()} sx={{
-                borderRadius: '10px', fontFamily: 'Sen', color: veg ? 'white' : '#473d72', backgroundColor: veg ? '#473d72' : 'white', '&:hover': { backgroundColor: veg ? '#473d72' : 'white' },
+                borderRadius: '10px', margin: '4px', textTransform: 'none', fontFamily: 'Sen', color: veg ? 'white' : '#473d72', backgroundColor: veg ? '#473d72' : 'white', '&:hover': { backgroundColor: veg ? '#473d72' : 'white' },
                 '&:active': { backgroundColor: "#473d72" },
-              }} endIcon={veg && <CloseIcon />} variant="contained">
+              }} variant="contained">
                 Veg&nbsp;<img className="Logo" alt="" src="https://img.icons8.com/color/512/vegetarian-food-symbol.png" style={{ height: '20px', width: '20px' }} />
               </Button>
-              <Button size='small' style={{ marginLeft: '10px' }} onClick={() => handleChangeNonVeg()} sx={{
-                borderRadius: '10px', fontFamily: 'Sen', color: nonveg ? 'white' : '#473d72', backgroundColor: nonveg ? '#473d72' : 'white', '&:hover': { backgroundColor: nonveg ? '#473d72' : 'white' },
+              <Button size='small' style={{ marginLeft: '10px', textTransform: 'none' }} onClick={() => handleChangeNonVeg()} sx={{
+                borderRadius: '10px', margin: '4px', fontFamily: 'Sen', color: nonveg ? 'white' : '#473d72', backgroundColor: nonveg ? '#473d72' : 'white', '&:hover': { backgroundColor: nonveg ? '#473d72' : 'white' },
                 '&:active': { backgroundColor: "#473d72" },
-              }} endIcon={nonveg && <CloseIcon />} variant="contained">
+              }} variant="contained">
                 Non-veg&nbsp;<img className="Logo" alt="" src="https://img.icons8.com/color/512/non-vegetarian-food-symbol.png" style={{ height: '20px', width: '20px' }} />
               </Button>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              {/* <Link to="/previousOrder">
-              <Button size='small' sx={{ width: '100px', borderRadius: '10px', fontFamily: 'Sen', backgroundColor: "#473d72",'&:hover': { backgroundColor: "#473d72" },
-                '&:active': { backgroundColor: "#473d72" }, '&:focus': { backgroundColor: "#473d72" }, }} startIcon={<RestaurantMenuIcon />} variant="contained">
-                Prev
+              <Button size='small' style={{ marginLeft: '10px', textTransform: 'none' }} onClick={() => handleChangeBestSeller()} sx={{
+                borderRadius: '10px', margin: '4px', fontFamily: 'Sen', color: bestseller ? 'white' : '#473d72', backgroundColor: bestseller ? '#473d72' : 'white', '&:hover': { backgroundColor: bestseller ? '#473d72' : 'white' },
+                '&:active': { backgroundColor: "#473d72" },
+              }} variant="contained">
+                Best Seller&nbsp;<img className="Logo" alt="" src="https://img.icons8.com/fluency/48/star--v1.png" style={{ height: '20px', width: '20px', marginBottom: '2px' }} />
               </Button>
-              </Link> */}
-              {/* <Button size='small' onClick={() => handleShow1()} sx={{ width: '100px', borderRadius: '10px', fontFamily: 'Sen', backgroundColor: "#473d72",'&:hover': { backgroundColor: "#473d72" },
-                '&:active': { backgroundColor: "#473d72" }, '&:focus': { backgroundColor: "#473d72" }, }} startIcon={<RestaurantMenuIcon />} variant="contained">
-                Menu
-              </Button> */}
+            </div>
+          </div >
+        </Navbar >
+        {
+          mains.length > 0 && <div id="mains">
+            <Mains category="Main Course" type="mains" meals={mains} />
+          </div>
+        }
+        {
+          sides.length > 0 && <div id="sides">
+            <Extras category="Sides" type="sides" items={sides} />
+          </div>
+        }
+        {
+          drinks.length > 0 && <div id="drinks">
+            <Extras category="Drinks" type="drinks" items={drinks} />
+          </div>
+        }
+        {
+          shakes.length > 0 && <div id="shakes">
+            <Extras category="Shakes" type="shakes" items={shakes} />
+          </div>
+        }
+        <Navbar variant="light" sticky="bottom" style={{ padding: 0 }} >
+          <div style={{ width: '100%' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'sticky', bottom: '50px', paddingBottom: '10px' }}>
               {lastOrder && <Link to="/previousOrder">
                 <IconButton size='small' style={{
                   backgroundColor: "#473d72",
@@ -192,31 +283,7 @@ export default function Home() {
                 </IconButton>
               </Link>
             </div>
-          </div >
-        </Navbar >
-        {
-          mains.length > 0 && <div id="mains">
-            <Mains category="Main Course" type="mains" meals={mains} />
-          </div>
-        }
-        {
-          sides.length > 0 && <div id="sides">
-            <Extras category="Sides" type="sides" items={sides} />
-          </div>
-        }
-        {
-          drinks.length > 0 && <div id="drinks">
-            <Extras category="Drinks" type="drinks" items={drinks} />
-          </div>
-        }
-        {
-          shakes.length > 0 && <div id="shakes">
-            <Extras category="Shakes" type="shakes" items={shakes} />
-          </div>
-        }
-        {
-          totalPrice > 0 && <Navbar bg="light" variant="light" sticky="bottom" style={{ height: '50px' }}>
-            <Container className='total'>
+            {totalPrice > 0 && <div className='total'>
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <span className="total-title">
                   <div>
@@ -236,9 +303,9 @@ export default function Home() {
                   },
                 }} variant="contained">View cart</Button>
               </Link>
-            </Container>
-          </Navbar>
-        }
+            </div>}
+          </div>
+        </Navbar>
       </div >
     </>
   )
