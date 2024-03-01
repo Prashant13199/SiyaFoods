@@ -17,14 +17,14 @@ export default function App() {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 600);
+    }, 800);
   })
 
   return (
     <LoadingScreen
       loading={loading}
       bgColor='#312951'
-      spinnerColor='#473d72'
+      spinnerColor='#FFA500'
       logoSrc={logo}
       textColor='white'
       text='Siya Foods'

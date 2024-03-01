@@ -34,9 +34,9 @@ export default function PreviousOrder() {
                         <strong>{getDate(ite.date)}</strong>
                         <div>{ite.cname} ({ite.cphone})</div>
                         <div style={{ display: 'flex', flexDirection: 'row' }}>
-                            {ite.order && ite.order.map((food) => {
+                            {ite.order && ite.order.map((food, index) => {
                                 return <>
-                                    <div>{food.name} ({food.quantity})&nbsp;</div>
+                                    <div>{index !== 0 && <>, </>}{food.name} ({food.quantity})&nbsp;</div>
                                 </>
                             })}
                         </div>

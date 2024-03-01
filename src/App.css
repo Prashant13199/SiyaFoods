@@ -75,7 +75,7 @@ body {
   max-width: 50rem;
   background-color: var(--light);
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+  border-radius: 20px;
 }
 
 .Header_Sticky {
@@ -105,27 +105,25 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
-  margin-bottom: 30px;
-}
-
-.Logo {
-  width: 120px;
-  height: 120px;
-  border-radius: 20px;
-  display: block;
-  object-fit: cover;
+  background-size: cover;
+  height: 30vh;
+  border-radius: 20px 20px 0 0;
+  margin-bottom: -20px;
 }
 
 .Title {
   color: white;
-  font-size: 40px;
-  font-weight: bold;
+  font-size: 55px;
+  font-weight: bolder;
+  text-shadow: 2px 2px #473d72;
 }
 
 .SubTitle {
-  color: gray;
-  font-size: 18px;
+  color: white;
+  font-size: 20px;
+  text-shadow: 2px 2px #473d72;
+  text-align: end;
+  font-style: italic;
 }
 
 .icon {

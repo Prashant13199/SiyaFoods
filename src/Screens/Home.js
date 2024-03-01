@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import { Context } from '../Context';
 import ListIcon from '@mui/icons-material/List';
+import Header from '../Components/Header';
 
 export default function Home() {
 
@@ -203,13 +204,7 @@ export default function Home() {
           </div>
         </Modal.Body>
       </Modal>
-      <div className="Header">
-        <img className="Logo" alt="" src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" />
-        <div style={{ marginLeft: '30px' }}>
-          <div className="Title">Siya Foods</div>
-          <div className="SubTitle">By Siya Developers</div>
-        </div>
-      </div>
+      <Header />
       <div className="menu">
         <Navbar bg="light" variant="light" sticky="top" style={{ marginBottom: '15px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
