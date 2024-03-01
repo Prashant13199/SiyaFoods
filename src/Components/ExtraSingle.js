@@ -31,7 +31,7 @@ export default function ExtraSingle({ item, index, type, setExtraCount }) {
       <div>
         {value === 0 ?
           <Button sx={{
-            fontFamily: 'Sen', fontSize: '14px', borderRadius: '10px', height: '30px', color: '#473d72', borderColor: '#473d72', '&:hover': {
+            fontFamily: 'Sen', fontSize: '14px', borderRadius: '10px', height: '40px', color: '#473d72', borderColor: '#473d72', '&:hover': {
               color: '#473d72',
               borderColor: '#473d72',
             },
