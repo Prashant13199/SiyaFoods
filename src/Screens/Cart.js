@@ -70,6 +70,7 @@ export default function Cart() {
             }
         }, 0)
         setCart(arr)
+        window.scrollTo(0, 0)
     }, [updateItem, items])
 
     const placeOrder = () => {

@@ -5,7 +5,7 @@ import data from '../data';
 import Modal from 'react-bootstrap/Modal';
 import SearchIcon from '@mui/icons-material/Search';
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
-import { IconButton, Button } from '@mui/material';
+import { IconButton, Button, Tooltip } from '@mui/material';
 import { Link } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import { Context } from '../Context';
@@ -191,7 +191,7 @@ export default function Home() {
 
   return (
     <>
-      <Modal size="sm" show={show1} onHide={handleClose1} centered>
+      <Modal size="md" show={show1} onHide={handleClose1} centered>
         <Modal.Body>
           <div style={{ maxHeight: '50vh', overflow: 'auto' }}>
             <h3 style={{ margin: "10px", fontWeight: 'bold', marginBottom: "30px" }}>Menu</h3>
@@ -254,28 +254,34 @@ export default function Home() {
           <div style={{ width: '100%' }}>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'sticky', bottom: '50px', paddingBottom: '10px' }}>
               {lastOrder && <Link to="/previousOrder">
-                <IconButton size='small' style={{
-                  backgroundColor: "#473d72",
-                  marginLeft: '10px'
-                }}>
-                  <ListIcon sx={{ color: 'white' }} />
-                </IconButton>
+                <Tooltip placement='top' title="Previos Order">
+                  <IconButton size='small' style={{
+                    backgroundColor: "#473d72",
+                    marginLeft: '10px'
+                  }}>
+                    <ListIcon sx={{ color: 'white' }} />
+                  </IconButton>
+                </Tooltip>
               </Link>}
               <Link onClick={() => handleShow1()}>
-                <IconButton size='small' style={{
-                  backgroundColor: "#473d72",
-                  marginLeft: '10px'
-                }}>
-                  <RestaurantMenuIcon sx={{ color: 'white' }} />
-                </IconButton>
+                <Tooltip placement='top' title="Menu">
+                  <IconButton size='small' style={{
+                    backgroundColor: "#473d72",
+                    marginLeft: '10px'
+                  }}>
+                    <RestaurantMenuIcon sx={{ color: 'white' }} />
+                  </IconButton>
+                </Tooltip>
               </Link>
               <Link to='/search'>
-                <IconButton size='small' style={{
-                  backgroundColor: "#473d72",
-                  marginLeft: '10px'
-                }}>
-                  <SearchIcon sx={{ color: 'white' }} />
-                </IconButton>
+                <Tooltip placement='top' title="Search">
+                  <IconButton size='small' style={{
+                    backgroundColor: "#473d72",
+                    marginLeft: '10px'
+                  }}>
+                    <SearchIcon sx={{ color: 'white' }} />
+                  </IconButton>
+                </Tooltip>
               </Link>
             </div>
             {totalPrice > 0 && <div className='total'>
@@ -300,7 +306,7 @@ export default function Home() {
               </Link>
             </div>}
           </div>
-        </Navbar>
+        </Navbar >
       </div >
     </>
   )

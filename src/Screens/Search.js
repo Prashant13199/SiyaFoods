@@ -26,6 +26,7 @@ export default function Search() {
     }, 0);
 
     useEffect(() => {
+        window.scrollTo(0, 0)
         if (value) {
             let arr = []
             data.mains.map((item, index) => {
@@ -85,7 +86,7 @@ export default function Search() {
                         : <ExtraSingle item={item.item} index={item.index} type={item.type} key={item.item.name} />
                 })}
             </div>
-            {totalPrice > 0 && <Navbar bg="light" variant="light" sticky="bottom" style={{ height: '50px' }}>
+            {totalPrice > 0 && <Navbar bg="light" variant="light" sticky="bottom" style={{ padding: 0 }}>
                 <Container className='total'>
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <span className="total-title">

@@ -10,48 +10,48 @@
     {
       "name": "Surf and Turf",
       "description": "A grilled, queen-cut ribeye served with shrimp and scallop alfredo.",
-      "price": "17",
+      "price": "170",
       "type": "veg",
       "bestseller": false
     },
     {
       "name": "Creamy Sage",
       "description": "Chicken breast sautéed with fresh sage and prosciutto. Served atop creamy asiago linguini.",
-      "price": "21",
+      "price": "210",
       "type": "veg",
       "bestseller": false
     },
     {
       "name": "From the Sea",
       "description": "Fresh haddock, gulf shrimp, and sea scallops dipped in beer batter and fried to a golden brown.",
-      "price": "23",
+      "price": "230",
       "type": "non-veg",
       "bestseller": true
     },
     {
       "name": "BB's Tenderloin",
       "description": "Tenderloin tips, sautéed with bacon and mushrooms and finished with a bourbon-BBQ sauce.",
-      "price": "18",
+      "price": "180",
       "type": "veg",
       "bestseller": false
     },
     {
       "name": "Chicken Marsala",
       "description": "Boneless chicken breast sautéed with mushrooms and finished in a marsala and cream reduction.",
-      "price": "22",
+      "price": "220",
       "type": "non-veg"
     },
     {
       "name": "Chicken Bhuna",
       "description": "Boneless chicken breast sautéed with mushrooms and finished in a marsala and cream reduction.",
-      "price": "22",
+      "price": "220",
       "type": "non-veg",
       "bestseller": false
     },
     {
       "name": "Chicken Kadai",
       "description": "Boneless chicken breast sautéed with mushrooms and finished in a marsala and cream reduction.",
-      "price": "22",
+      "price": "230",
       "type": "non-veg",
       "bestseller": false
     }
@@ -59,31 +59,31 @@
   "sides": [
     {
       "name": "Fries",
-      "price": "5",
+      "price": "50",
       "type": "veg",
       "bestseller": true
     },
     {
       "name": "Onion Rings",
-      "price": "4",
+      "price": "40",
       "type": "veg",
       "bestseller": false
     },
     {
       "name": "Chicken Nuggets",
-      "price": "4",
+      "price": "90",
       "type": "non-veg",
       "bestseller": true
     },
     {
       "name": "Salad",
-      "price": "6",
+      "price": "60",
       "type": "veg",
       "bestseller": false
     },
     {
       "name": "Coleslaw",
-      "price": "5",
+      "price": "100",
       "type": "veg",
       "bestseller": false
     }
@@ -96,14 +96,8 @@
       "bestseller": false
     },
     {
-      "name": "Onion Rings",
-      "price": "4",
-      "type": "veg",
-      "bestseller": false
-    },
-    {
       "name": "Has Brown",
-      "price": "3",
+      "price": "30",
       "type": "veg",
       "bestseller": false
     }
@@ -111,43 +105,43 @@
   "drinks": [
     {
       "name": "Soft Drink",
-      "price": "4",
+      "price": "40",
       "type": "veg",
       "bestseller": false
     },
     {
       "name": "Orange Juice",
-      "price": "5",
+      "price": "50",
       "type": "veg",
       "bestseller": false
     },
     {
       "name": "Iced Tea",
-      "price": "4",
+      "price": "40",
       "type": "veg",
       "bestseller": true
     },
     {
       "name": "Coffee",
-      "price": "6",
+      "price": "60",
       "type": "veg",
       "bestseller": false
     },
     {
       "name": "Smoothie",
-      "price": "4",
+      "price": "40",
       "type": "veg",
       "bestseller": false
     },
     {
       "name": "Water",
-      "price": "2",
+      "price": "20",
       "type": "veg",
       "bestseller": false
     },
     {
       "name": "Mastani",
-      "price": "4",
+      "price": "40",
       "type": "veg",
       "bestseller": false
     }

@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 export default function PreviousOrder() {
 
     const lastOrder = JSON.parse(localStorage.getItem("lastOrder"))
-    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
     const getDate = (date) => {
         let t = new Date(date)
@@ -15,7 +15,7 @@ export default function PreviousOrder() {
     }
 
     return (
-        <div className="menu">
+        <div className="menu" style={{ minHeight: window.innerHeight - 80 }}>
             <Navbar bg="light" variant="light" sticky="top" style={{ height: '50px' }}>
                 <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
                     <IconButton>
@@ -28,28 +28,57 @@ export default function PreviousOrder() {
                     </div>
                 </div>
             </Navbar>
-            {lastOrder.length > 0 ? <><div style={{ minHeight: window.innerHeight - 120, padding: '20px' }}>
-                {lastOrder && lastOrder.map((ite) => (
-                    <p>
-                        <strong>{getDate(ite.date)}</strong>
-                        <div>{ite.cname} ({ite.cphone})</div>
-                        <div style={{ display: 'flex', flexDirection: 'row' }}>
-                            {ite.order && ite.order.map((food, index) => {
-                                return <>
-                                    <div>{index !== 0 && <>, </>}{food.name} ({food.quantity})&nbsp;</div>
-                                </>
-                            })}
-                        </div>
-                        <div>Total:&nbsp;&nbsp;&#8377;{ite.total}</div>
-                    </p>
-                ))}
-            </div>
-            </>
-                :
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px' }}>
-                    <div>No items</div>
-                </div>
-            }
+            <table style={{ width: '100%', marginTop: '20px' }}>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>User Details</th>
+                        <th>Items</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {lastOrder.length > 0 ? <>
+                        {lastOrder && lastOrder.map((ite, index, arr) => (
+                            <tr style={{ borderBottom: index !== arr.length - 1 && '1px solid #473d72' }}>
+                                <td>
+                                    <div>{getDate(ite.date)}</div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <div>{ite.cname}</div>
+                                        <div>{ite.cphone}</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        {ite.order && ite.order.map((food, index) => {
+                                            return <ul>
+                                                <li>{food.name}({food.quantity})&nbsp;</li>
+                                            </ul>
+                                        })}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>&#8377;<b>{ite.total}</b></div>
+                                </td>
+                            </tr>
+
+                        ))}
+
+
+                    </>
+                        :
+                        <tr>
+                            <td>
+                                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px' }}>
+                                    <div>No items</div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     )
 }

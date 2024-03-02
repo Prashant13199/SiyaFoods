@@ -13,12 +13,25 @@ input,
   font-family: 'Sen' !important;
 }
 
+td {
+  vertical-align: top;
+}
+
+th {
+  text-align: left;
+}
+
 .css-1yjjitx-MuiSwitch-track {
-  background-color: #473d72 !important;
+  background-color: var(--secondary) !important;
+}
+
+.modal-body {
+  background-color: var(--primary);
+  color: white;
 }
 
 .bestseller {
-  background-color: #473d72;
+  background-color: var(--secondary);
   border-radius: 6px;
   color: white;
   width: fit-content;
@@ -32,7 +45,7 @@ html {
 }
 
 .MuiSwitch-thumb {
-  background-color: #312951;
+  background-color: var(--primary);
 }
 
 *,
@@ -91,6 +104,14 @@ body {
   border-bottom: 1px;
 }
 
+.menu-item-sides {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  border-bottom: 1px;
+}
+
 .menu-item-photo {
   height: 120px;
   width: 120px;
@@ -115,13 +136,13 @@ body {
   color: white;
   font-size: 55px;
   font-weight: bolder;
-  text-shadow: 2px 2px #473d72;
+  text-shadow: 2px 2px var(--secondary);
 }
 
 .SubTitle {
   color: white;
   font-size: 20px;
-  text-shadow: 2px 2px #473d72;
+  text-shadow: 2px 2px var(--secondary);
   text-align: end;
   font-style: italic;
 }
@@ -211,6 +232,10 @@ body {
   margin-bottom: 0.75rem;
 }
 
+.menu-item-sides {
+  margin-bottom: 1.5rem;
+}
+
 .extras-heading {
   margin: 0 0 1.5rem;
   border-bottom: 1px solid var(--secondary);
@@ -228,7 +253,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: white;
+  background-color: var(--light);
   padding: 10px 0px !important;
 }
 
@@ -242,11 +267,11 @@ body {
   margin: 0;
   font-size: 1.5rem;
   font-weight: bold;
-  color: "#473d72";
+  color: var(--secondary);
 }
 
 .total-price {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #473d72;
+  color: var(--secondary);
 }

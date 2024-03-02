@@ -10,10 +10,10 @@ export default function Mains({ type, meals, category }) {
 
   return (
     <section className="mains" id={type}>
-      <button style={{display: 'none'}} onClick={() => setOpen(true)}></button>
-      <div onClick={() => setOpen(!open)} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-      <h2 className="extras-heading" aria-controls="example-collapse-text" aria-expanded={open}>{category}</h2>
-      <div>{open ? <ExpandLessIcon /> : <ExpandMoreIcon /> }</div>
+      <button style={{ display: 'none' }} onClick={() => setOpen(true)}></button>
+      <div onClick={() => setOpen(!open)} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer' }}>
+        <h2 className="extras-heading" aria-controls="example-collapse-text" aria-expanded={open}>{category}</h2>
+        <div>{open ? <ExpandLessIcon /> : <ExpandMoreIcon />}</div>
       </div>
       <Collapse in={open}>
         <div id="example-collapse-text">

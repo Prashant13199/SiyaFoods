@@ -5,7 +5,7 @@ import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRou
 import RemoveCircleOutlineRoundedIcon from '@mui/icons-material/RemoveCircleOutlineRounded';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-export default function ExtraSingle({ item, index, type, setExtraCount }) {
+export default function ExtraSingle({ item, index, type }) {
   const [value, setValue] = useState(0);
   const [items1, updateItem] = useContext(Context);
 
@@ -19,7 +19,7 @@ export default function ExtraSingle({ item, index, type, setExtraCount }) {
   }, [items1, index, type])
 
   return (
-    <article className="menu-item" key={index} id={item.name}>
+    <article className="menu-item-sides" key={index} id={item.name}>
       <div>
         {item?.bestseller && <div className="bestseller">BestSeller <img style={{ height: '16px', width: '16px', marginBottom: '2px' }} src="https://img.icons8.com/fluency/48/star--v1.png" /></div>}
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
