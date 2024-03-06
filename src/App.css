@@ -88,7 +88,8 @@ body {
   max-width: 50rem;
   background-color: var(--light);
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
-  border-radius: 20px;
+  border-radius: 10px;
+  padding-bottom: 10px;
 }
 
 .Header_Sticky {
@@ -128,7 +129,7 @@ body {
   align-items: center;
   background-size: cover;
   height: 30vh;
-  border-radius: 20px 20px 0 0;
+  border-radius: 10px 10px 0 0;
   margin-bottom: -20px;
 }
 
@@ -274,4 +275,44 @@ body {
   font-size: 1.5rem;
   font-weight: bold;
   color: var(--secondary);
+}
+
+.previous_order {
+  box-shadow: 0 0 10px lightgray;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+}
+
+.user_details {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.name {
+  margin-left: 10px;
+}
+
+.phone {
+  margin-left: 10px;
+}
+
+.date_price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.orderby {
+  font-style: italic;
+  font-size: 14px;
+}
+
+.date {
+  font-size: 14px;
+}
+
+.order_list {
+  margin: 10px;
 }
