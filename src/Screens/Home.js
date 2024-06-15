@@ -263,7 +263,7 @@ export default function Home() {
                   </IconButton>
                 </Tooltip>
               </Link>}
-              <Link onClick={() => handleShow1()}>
+              <div onClick={() => handleShow1()}>
                 <Tooltip placement='top' title="Menu">
                   <IconButton size='small' style={{
                     backgroundColor: "#473d72",
@@ -272,7 +272,7 @@ export default function Home() {
                     <RestaurantMenuIcon sx={{ color: 'white' }} />
                   </IconButton>
                 </Tooltip>
-              </Link>
+              </div>
               <Link to='/search'>
                 <Tooltip placement='top' title="Search">
                   <IconButton size='small' style={{

@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 import LoadingScreen from 'react-loading-screen';
 import logo from '../src/logo.png'
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./Screens/Home";
 import Cart from "./Screens/Cart";
 import { Provider } from "./Context";
@@ -31,14 +31,12 @@ export default function App() {
     >
       <Provider>
         <BrowserRouter>
-          <Routes>
-            <Route>
-              <Route path="/" element={<Home />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/search" element={<Search />} />
-              <Route path="/previousorder" element={<PreviousOrder />} />
-            </Route>
-          </Routes>
+          <Switch>
+            <Route path="/" exact><Home /></Route>
+            <Route path="/cart"><Cart /></Route>
+            <Route path="/search"><Search /></Route>
+            <Route path="/previousorder"><PreviousOrder /></Route>
+          </Switch>
         </BrowserRouter>
       </Provider>
     </LoadingScreen>

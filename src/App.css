@@ -13,6 +13,10 @@ input,
   font-family: 'Sen' !important;
 }
 
+.MuiButton-root {
+  text-transform: none !important;
+}
+
 td {
   vertical-align: top;
 }

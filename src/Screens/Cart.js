@@ -11,7 +11,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
 import RemoveCircleOutlineRoundedIcon from '@mui/icons-material/RemoveCircleOutlineRounded';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { Link, redirect } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Alert from '@mui/material/Alert';
@@ -38,6 +38,7 @@ export default function Cart() {
     const [phone, setPhone] = useState("")
     const [processing, setProcessing] = useState(false)
     const lastOrder = localStorage.getItem("lastOrder")
+    const history = useHistory()
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -125,7 +126,7 @@ export default function Cart() {
                             }
                             setProcessing(false)
                             clearItems()
-                            window.location.replace('/')
+                            history.push('/')
                         }
                     })
 
@@ -165,7 +166,6 @@ export default function Cart() {
             .then((result) => {
                 if (result.isConfirmed) {
                     clearItems()
-
                     Swal.fire({
                         title: 'Success',
                         text: "Cart cleared!",
@@ -174,7 +174,7 @@ export default function Cart() {
                         showConfirmButton: false,
                         timer: 1000
                     }).then(() => {
-                        window.location.replace('/')
+                        history.push('/')
                     })
                 }
             })
@@ -261,7 +261,7 @@ export default function Cart() {
                             </div>
                         </div>
                         {totalPrice > 0 && <div onClick={() => handleClearCart()}>
-                            <div style={{ backgroundColor: "#473d72", color: 'white', width: 'fit-content', padding: '7px', borderRadius: '10px', cursor: 'pointer' }}><DeleteIcon /> Clear cart</div>
+                            <div style={{ backgroundColor: "#473d72", color: 'white', width: 'fit-content', padding: '7px', borderRadius: '10px', cursor: 'pointer' }}>Clear cart <DeleteIcon sx={{ fontSize: '18px' }} /></div>
                         </div>}
                     </Container>
                 </Navbar>
@@ -328,7 +328,7 @@ export default function Cart() {
                                     color: 'white',
                                     backgroundColor: '#473d72',
                                     borderColor: '#473d72',
-                                },
+                                }
                             }} variant="contained">Place Order</Button>
                         </div>
                     </div>

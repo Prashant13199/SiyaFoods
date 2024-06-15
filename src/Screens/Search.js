@@ -62,10 +62,10 @@ export default function Search() {
     return (
         <div className='menu'>
             <Navbar bg="light" variant="light" sticky="top">
-                <Paper component="form" sx={{ display: 'flex', alignItems: 'center', width: '100%', borderRadius: '20px' }}>
+                <Paper component="form" sx={{ display: 'flex', alignItems: 'center', width: '100%', borderRadius: '10px' }}>
                     <IconButton aria-label="menu">
                         <Link to='/' style={{ color: '#473d72' }}>
-                            <ArrowBackIcon />
+                            <ArrowBackIcon fontSize='medium' />
                         </Link>
                     </IconButton>
                     <InputBase
