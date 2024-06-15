@@ -7,29 +7,16 @@
   <meta name="viewport"
     content="width=device-width, height=device-height,  initial-scale=1.0, user-scalable=no, user-scalable=0" />
   <meta name="theme-color" content="#000000" />
-  <meta name="description" content="Siya Foods" />
+  <meta name="description" content="Siya Food" />
   <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
   <link href="https://fonts.googleapis.com/css?family=Sen" rel="stylesheet">
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-  <title>Siya Foods</title>
+  <title>Siya Food</title>
 </head>
 
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function () {
-        navigator.serviceWorker.register('serviceWorker.js').then(function (registration) {
-          // Registration was successful
-          console.log('ServiceWorker registration successful with scope: ', registration.scope);
-        }, function (err) {
-          // registration failed :(
-          console.log('ServiceWorker registration failed: ', err);
-        });
-      });
-    }
-  </script>
 </body>
 
 

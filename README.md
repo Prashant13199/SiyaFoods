@@ -1,7 +1,7 @@
-# SiyaFoods
+# SiyaFood
 Digital Restaurant Menu built using React.
 
-Deployed Link: https://siyafoods.netlify.app
+Deployed Link: https://siyafood.netlify.app
 
 # Screenshots
 

@@ -27,7 +27,7 @@ export default function App() {
       spinnerColor='#FFA500'
       logoSrc={logo}
       textColor='white'
-      text='Siya Foods'
+      text='Siya Food'
     >
       <Provider>
         <BrowserRouter>
