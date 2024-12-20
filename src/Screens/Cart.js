@@ -24,6 +24,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Swal from 'sweetalert2';
 import '../App.css'
+import { makeID } from '../Service/makeID';
 
 export default function Cart() {
 
@@ -36,9 +37,12 @@ export default function Cart() {
     const [open, setOpen] = useState(false);
     const [name, setName] = useState("")
     const [phone, setPhone] = useState("")
+    const [instructions, setInstructions] = useState("")
     const [processing, setProcessing] = useState(false)
     const lastOrder = localStorage.getItem("lastOrder")
     const history = useHistory()
+
+    const orderID = makeID(10)
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -52,6 +56,7 @@ export default function Cart() {
         setErrorPhone("")
         setName("")
         setPhone("")
+        setInstructions("")
         setSuccess("")
     };
 
@@ -88,10 +93,11 @@ export default function Cart() {
         setProcessing(true)
         let final = []
         var seen = [];
-        final.push({ 'Customer Name': name, 'phone': phone })
+        final.push({ 'Order ID': orderID, 'Customer Name': name, 'phone': phone })
         cart.forEach((item) => {
             final.push({ 'name': item.name, "quantity": item.quantity, "amount": item.amount })
         })
+        instructions && final.push({ "instructions": instructions })
         final.push({ 'total price': totalPrice })
         let message = JSON.stringify(final, function (key, val) {
             if (val != null && typeof val == "object") {
@@ -117,16 +123,16 @@ export default function Cart() {
                             if (lastOrder) {
                                 let order;
                                 order = JSON.parse(lastOrder)
-                                order.push({ 'date': Date.now(), 'order': cart, 'cname': name, 'cphone': phone, 'total': totalPrice })
+                                order.push({ 'orderId': orderID, 'date': Date.now(), 'order': cart, 'cname': name, 'cphone': phone, 'instructions': instructions, 'total': totalPrice })
                                 localStorage.setItem('lastOrder', JSON.stringify(order))
                             } else {
                                 let order = []
-                                order.push({ 'date': Date.now(), 'order': cart, 'cname': name, 'cphone': phone, 'total': totalPrice })
+                                order.push({ 'orderId': orderID, 'date': Date.now(), 'order': cart, 'cname': name, 'cphone': phone, 'instructions': instructions, 'total': totalPrice })
                                 localStorage.setItem('lastOrder', JSON.stringify(order))
                             }
                             setProcessing(false)
                             clearItems()
-                            history.push('/')
+                            history.push('/previousOrder')
                         }
                     })
 
@@ -239,6 +245,18 @@ export default function Cart() {
                         onChange={(e) => setPhone(e.target.value)}
                         helperText={errorPhone && "Please enter a valid phone number"}
                         error={errorPhone}
+                        color="secondary"
+                    />
+                    <TextField
+                        margin="dense"
+                        id="instructions"
+                        label="instructions"
+                        type="text"
+                        fullWidth
+                        variant="standard"
+                        required
+                        value={instructions}
+                        onChange={(e) => setInstructions(e.target.value)}
                         color="secondary"
                     />
                 </DialogContent>

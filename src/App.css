@@ -227,6 +227,15 @@ body {
   justify-content: center;
 }
 
+.cancelled {
+  font-size: bold;
+  color: red;
+}
+
+.cancelButton {
+  margin-top: 10px !important;
+}
+
 @media (min-width: 660px) {
   .extras+.extras {
     margin-top: 2.5rem;
@@ -315,6 +324,11 @@ body {
 
 .date {
   font-size: 14px;
+}
+
+.instructions {
+  font-size: 14px;
+  font-style: italic;
 }
 
 .order_list {

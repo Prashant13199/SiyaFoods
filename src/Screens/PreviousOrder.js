@@ -3,24 +3,18 @@ import { IconButton } from '@mui/material';
 import Navbar from 'react-bootstrap/Navbar';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Link } from 'react-router-dom';
+import PrevOrder from '../Components/PrevOrder';
 
 export default function PreviousOrder() {
 
     const [lastOrder, setLastorder] = useState([])
-
-
-    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-    const getDate = (date) => {
-        let t = new Date(date)
-        return `${t.getDate()} ${months[t.getMonth() - 1]} ${t.getFullYear()} at ${t.getHours()}:${t.getMinutes()}`
-    }
 
     useEffect(() => {
         window.scrollTo(0, 0)
         let order = JSON.parse(localStorage.getItem("lastOrder"))
         setLastorder(order.reverse())
     }, [])
+
 
     return (
         <div className="menu" style={{ minHeight: window.innerHeight - 80 }}>
@@ -37,24 +31,7 @@ export default function PreviousOrder() {
                 </div>
             </Navbar>
             {lastOrder?.map((ite, index) => (
-                <div className='previous_order' key={index}>
-                    <div className='user_details'>
-                        <div className='orderby'>Ordered By</div>
-                        <div className='name'>{ite.cname}</div>
-                        <div className='phone'>({ite.cphone})</div>
-                    </div>
-                    <div className='order_list'>
-                        <ul>
-                            {ite.order && ite.order.map((food, index) => {
-                                return <li key={index}>x{food.quantity} {food.name}</li>
-                            })}
-                        </ul>
-                    </div>
-                    <div className='date_price'>
-                        <div className='date'>{getDate(ite.date)}</div>
-                        <div>&#8377;<b>{ite.total}</b></div>
-                    </div>
-                </div>
+                <PrevOrder ite={ite} index={index} lastOrder={lastOrder} />
             ))
             }
         </div>
