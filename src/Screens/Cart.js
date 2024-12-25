@@ -91,23 +91,16 @@ export default function Cart() {
             return
         }
         setProcessing(true)
-        let final = []
-        var seen = [];
-        final.push({ 'Order ID': orderID, 'Customer Name': name, 'phone': phone })
+        let finalMessage = []
+        finalMessage.push('Order Details:\n\n')
+        finalMessage.push(`Order ID: ${orderID}\nCustomer Name: ${name}\nPhone: ${phone}\n\n`)
+        finalMessage.push(`Ordered Items:\n`)
         cart.forEach((item) => {
-            final.push({ 'name': item.name, "quantity": item.quantity, "amount": item.amount })
+            finalMessage.push(`Item Name: ${item.name}\nQuantity: ${item.quantity}x\nAmount: ${item.amount}\n\n`)
         })
-        instructions && final.push({ "instructions": instructions })
-        final.push({ 'total price': totalPrice })
-        let message = JSON.stringify(final, function (key, val) {
-            if (val != null && typeof val == "object") {
-                if (seen.indexOf(val) >= 0) {
-                    return;
-                }
-                seen.push(val);
-            }
-            return val;
-        }, '\t')
+        instructions && finalMessage.push(`Instructions: ${instructions}\n\n`)
+        finalMessage.push(`Total Price: ${totalPrice}`)
+        let message = finalMessage.join('')
         fetch(`https://api.telegram.org/bot6240181449:AAHQnBaEIpgcy_TeC-p89cRRHovqNAsMD9c/sendMessage?chat_id=5448964260&text=${encodeURI(message)}`).then((response) => {
             if (response.ok) {
                 handleClose()
@@ -155,8 +148,7 @@ export default function Cart() {
                 confirmButtonColor: '#3085d6',
                 confirmButtonText: 'OK',
             })
-        }
-        )
+        })
     }
 
     const handleClearCart = () => {
