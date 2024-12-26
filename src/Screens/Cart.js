@@ -104,6 +104,16 @@ export default function Cart() {
         fetch(`https://api.telegram.org/bot6240181449:AAHQnBaEIpgcy_TeC-p89cRRHovqNAsMD9c/sendMessage?chat_id=5448964260&text=${encodeURI(message)}`).then((response) => {
             if (response.ok) {
                 handleClose()
+                if (lastOrder) {
+                    let order;
+                    order = JSON.parse(lastOrder)
+                    order.push({ 'orderId': orderID, 'date': Date.now(), 'order': cart, 'cname': name, 'cphone': phone, 'instructions': instructions, 'total': totalPrice })
+                    localStorage.setItem('lastOrder', JSON.stringify(order))
+                } else {
+                    let order = []
+                    order.push({ 'orderId': orderID, 'date': Date.now(), 'order': cart, 'cname': name, 'cphone': phone, 'instructions': instructions, 'total': totalPrice })
+                    localStorage.setItem('lastOrder', JSON.stringify(order))
+                }
                 Swal.fire({
                     title: 'Success',
                     text: "Your order has been placed!",
@@ -113,16 +123,6 @@ export default function Cart() {
                 })
                     .then((result) => {
                         if (result.isConfirmed) {
-                            if (lastOrder) {
-                                let order;
-                                order = JSON.parse(lastOrder)
-                                order.push({ 'orderId': orderID, 'date': Date.now(), 'order': cart, 'cname': name, 'cphone': phone, 'instructions': instructions, 'total': totalPrice })
-                                localStorage.setItem('lastOrder', JSON.stringify(order))
-                            } else {
-                                let order = []
-                                order.push({ 'orderId': orderID, 'date': Date.now(), 'order': cart, 'cname': name, 'cphone': phone, 'instructions': instructions, 'total': totalPrice })
-                                localStorage.setItem('lastOrder', JSON.stringify(order))
-                            }
                             setProcessing(false)
                             clearItems()
                             history.push('/previousOrder')
