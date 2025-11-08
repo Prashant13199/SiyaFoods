@@ -376,3 +376,15 @@ body {
 .content-button.active-button {
   color: white;
 }
+
+@media (max-width: 660px) {
+
+  .switch-container {
+    width: 100%;
+    display: flex;
+  }
+
+  .sliding-pill {
+    width: 50%;
+  }
+}
