@@ -334,3 +334,45 @@ body {
 .order_list {
   margin: 10px;
 }
+
+.switch-container {
+  position: relative;
+  background-color: rgb(227, 227, 227);
+  border-radius: 20px;
+  width: 400px;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.sliding-pill {
+  position: absolute;
+  height: 100%;
+  background-color: var(--primary);
+  border-radius: 20px;
+  transition: transform 0.3s ease-in-out;
+  width: 200px;
+}
+
+.slide-to-dinein {
+  transform: translateX(0);
+}
+
+.slide-to-delivery {
+  transform: translateX(100%);
+}
+
+.content-button {
+  position: relative;
+  transition: color 0.3s ease-in-out;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: black;
+  text-align: center;
+  font-weight: bold;
+  width: 200px;
+}
+
+.content-button.active-button {
+  color: white;
+}

@@ -39,6 +39,10 @@ export default function Cart() {
     const [phone, setPhone] = useState("")
     const [instructions, setInstructions] = useState("")
     const [processing, setProcessing] = useState(false)
+    const [mode, setMode] = useState('dinein')
+    const [tableNumber, setTableNumber] = useState('')
+    const [location, setLocation] = useState(null);
+    const [address, setAddress] = useState("")
     const lastOrder = localStorage.getItem("lastOrder")
     const history = useHistory()
 
@@ -58,7 +62,28 @@ export default function Cart() {
         setPhone("")
         setInstructions("")
         setSuccess("")
+        setMode('dinein')
+        setAddress()
+        setLocation(null)
     };
+
+    const getLocation = () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    setLocation({
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude,
+                    });
+                },
+                (err) => {
+                    setError(err.message);
+                }
+            );
+        } else {
+            setError('Geolocation is not supported by your browser.');
+        }
+    }
 
     const totalPrice = Object.keys(items).reduce((acc, curr) => {
         const [group, item] = curr.split("-");
@@ -99,6 +124,10 @@ export default function Cart() {
             finalMessage.push(`Item Name: ${item.name}\nQuantity: ${item.quantity}x\nAmount: ${item.amount}\n\n`)
         })
         instructions && finalMessage.push(`Instructions: ${instructions}\n\n`)
+        const locationURL = `https://www.google.com/maps/place/${location?.latitude},${location?.longitude}`
+        address && finalMessage.push(`Full adresss: ${address}\n\n`)
+        location && finalMessage.push(`Delivery Location: ${locationURL}\n\n`)
+        tableNumber && finalMessage.push(`Table Number: ${tableNumber}\n\n`)
         finalMessage.push(`Total Price: ${totalPrice}`)
         let message = finalMessage.join('')
         fetch(`https://api.telegram.org/bot6240181449:AAHQnBaEIpgcy_TeC-p89cRRHovqNAsMD9c/sendMessage?chat_id=5448964260&text=${encodeURI(message)}`).then((response) => {
@@ -210,6 +239,22 @@ export default function Cart() {
                     <DialogContentText style={{ fontFamily: 'Sen', color: '#473d72' }}>
                         Please provide details to place order
                     </DialogContentText>
+                    <div className="switch-container">
+                        <div className={`sliding-pill ${mode === 'dinein' ? 'slide-to-dinein' : 'slide-to-delivery'}`}></div>
+                        <button onClick={() => {
+                            setMode('dinein')
+                            setLocation(null)
+                            setAddress('')
+                        }} className={`content-button ${mode === 'dinein' ? 'active-button' : ''}`}>
+                            Dine In
+                        </button>
+                        <button onClick={() => {
+                            setMode('delivery')
+                            setTableNumber('')
+                        }} className={`content-button ${mode === 'delivery' ? 'active-button' : ''}`}>
+                            Delivery
+                        </button>
+                    </div>
                     <TextField
                         color="secondary"
                         autoFocus
@@ -251,6 +296,54 @@ export default function Cart() {
                         onChange={(e) => setInstructions(e.target.value)}
                         color="secondary"
                     />
+                    {mode === 'dinein' ? <TextField
+                        margin="dense"
+                        id="table"
+                        label="Table Number"
+                        type="text"
+                        fullWidth
+                        variant="standard"
+                        required
+                        value={tableNumber}
+                        onChange={(e) => setTableNumber(e.target.value)}
+                        color="secondary"
+                    /> :
+                        <>
+
+                            <TextField
+                                margin="dense"
+                                id="adress"
+                                label="Address"
+                                type="text"
+                                fullWidth
+                                variant="standard"
+                                required
+                                value={address}
+                                onChange={(e) => setAddress(e.target.value)}
+                                color="secondary"
+                            />
+                            <TextField
+                                margin="dense"
+                                id="location"
+                                label="Location"
+                                type="text"
+                                fullWidth
+                                variant="standard"
+                                required
+                                disabled
+                                value={location ? `Latitude: ${location?.latitude}, Longitude: ${location?.longitude}` : 'Click on add location for coordinates'}
+                                onChange={(e) => setLocation(e.target.value)}
+                                color="secondary"
+                            />
+                            <Button onClick={() => getLocation()} sx={{
+                                fontFamily: 'Sen', marginTop: "10px", fontSize: '14px', width: '140px', borderRadius: '10px', height: '30px', color: 'white', backgroundColor: '#473d72', '&:hover': {
+                                    color: 'white',
+                                    backgroundColor: '#473d72',
+                                    borderColor: '#473d72',
+                                }
+                            }} variant="contained">Add Location</Button>
+                        </>
+                    }
                 </DialogContent>
                 <DialogActions>
                     <Button style={{ color: '#473d72', fontFamily: 'Sen' }} onClick={handleClose}>Cancel</Button>
